@@ -9,9 +9,10 @@
     <title>@yield('tital')</title>
     <link href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('https://pro.fontawesome.com/releases/v5.10.0/css/all.css') }}" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 </head>
-@section('content')
+{{-- @section('content') --}}
 <body>
 
 <div class="container">
@@ -20,28 +21,62 @@
         <table class="table table-striped">
             <thead>
               <tr>
+                <th scope="col">SL No</th>
                 <th scope="col">Roll</th>
                 <th scope="col">Name</th>
                 <th scope="col">Class</th>
-                <th scope="col">Phone</th>
+                <th scope="col">Image</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            {{-- <tbody>
-                @foreach ($student as $row )
+            <tbody>
+                @foreach ($student as  $key=>$row )
               <tr> 
+                <td>{{$key+1}}</td>
                 <th scope="row">{{ $row->student_roll }}</th>
                 <td>{{ $row->student_name }}</td>
                 <td>{{ $row->student_class }}</td>
-                <td>{{ $row->student_phone }}</td>
+                {{-- <td>{{ $row->student_phone }}</td> --}}
+                <td><img src="{{ asset($row->student_img)}}" height="40" width="70"></td>
                <td>
-                <a href="#" class="btn btn-info btn-sm edit" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-info btn-sm edit" data-toggle="modal" data-target="#editModal{{ $row->id }}" ><i class="fas fa-edit"></i></a>
                 <a href="{{ route('student.delete',$row->id) }}" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i></a>
-                <a href="#" class="btn btn-success btn-sm" > <i class="far fa-eye"></i></i></a>
+                <a href="#" class="btn btn-success btn-sm"  > <i class="far fa-eye"></i></i></a>
+
+
+
+                <div class="modal fade" id="editModal{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">View Student Info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                       <form action="" method="Post" enctype="multipart/form-data">
+                          @csrf
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          <button type="Submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                
                     </td>
               </tr> 
               @endforeach
-            </tbody> --}}
+            </tbody>
           </table>
     </div>
     <div class="col-md-4">
@@ -58,7 +93,7 @@
              </div> --}}
              <div class="form-group p-2">
                 <label for="">Class</label>
-               <input type="text" class="form-control" id="" aria-describedby="" name="student_class" placeholder=" student Class">
+               <input type="number" class="form-control" id="" aria-describedby="" name="student_class" placeholder=" student Class">
              </div>
              <div class="form-group p-2">
                 <label for="">Age</label>
@@ -84,7 +119,7 @@
 </div>
 </div>
 
-
+{{-- 
 <!-- student  Insert Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -104,7 +139,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
 
@@ -115,7 +150,8 @@
 
 
 
-@endsection
+{{-- @endsection --}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="{{asset ('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js') }}" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
