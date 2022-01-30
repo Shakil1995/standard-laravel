@@ -13,7 +13,7 @@
   
 @include('layouts.manu')
 @include('student.student-info')
-{{-- @yield('content')  --}}
+@yield('content') 
 {{----}}
 
 

@@ -1,5 +1,5 @@
 
-{{-- @extends('layouts.ma') --}}
+{{-- @extends('layouts.manu') --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('https://pro.fontawesome.com/releases/v5.10.0/css/all.css') }}" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 </head>
-{{-- @section('content') --}}
+@section('content')
 <body>
 
 <div class="container">
@@ -27,21 +27,21 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
-                @foreach ($studentAll as $row )
+            {{-- <tbody>
+                @foreach ($student as $row )
               <tr> 
                 <th scope="row">{{ $row->student_roll }}</th>
                 <td>{{ $row->student_name }}</td>
                 <td>{{ $row->student_class }}</td>
                 <td>{{ $row->student_phone }}</td>
                <td>
-                <a href="#" class="btn btn-info btn-sm edit" ><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-info btn-sm edit" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
                 <a href="{{ route('student.delete',$row->id) }}" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i></a>
-                <a href="#" class="btn btn-success btn-sm"  data-toggle="modal" data-target="#viewModal"> <i class="far fa-eye"></i></i></a>
+                <a href="#" class="btn btn-success btn-sm" > <i class="far fa-eye"></i></i></a>
                     </td>
               </tr> 
               @endforeach
-            </tbody>
+            </tbody> --}}
           </table>
     </div>
     <div class="col-md-4">
@@ -86,7 +86,7 @@
 
 
 <!-- student  Insert Modal -->
-<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -115,10 +115,7 @@
 
 
 
-
-
-
-{{-- @endsection --}}
+@endsection
 <script src="{{asset ('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js') }}" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
